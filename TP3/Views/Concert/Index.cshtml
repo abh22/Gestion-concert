@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<Concert>
+
+<h1>Festival de Carthage Concerts</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Concert</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Artist</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Venue</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Artist</td>
+                <td>@item.Date.ToShortDateString()</td>
+                <td>@item.StartTime.ToString("hh\\:mm")</td>
+                <td>@item.Venue</td>
+                <td>@item.TicketPrice.ToString("C")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
